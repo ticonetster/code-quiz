@@ -80,7 +80,7 @@ header {
   text-align: center;
 }
 
-.float-right {
+#time {
   float: right;
 }
 .float-left {

@@ -49,6 +49,29 @@ var navigationEl = document.querySelector(".navigation");
 var correct_wrong = document.querySelector(".correct_wrong");
 //show first question
 var currentQIndex = 0;
+//Start TImer
+const myTimer = setInterval(time, 1000);
+
+var timeLft = moment("1:00", "m:ss");
+var timeUp = timeLft.minutes() * 60;
+function time(){
+  console.log("TIme Left: " + timeLft)
+  console.log("TIme Up: " + timeUp)
+  $("#time").text("Time Left: " + timeLft.subtract(1, "second").format("m:ss"));
+  timeUp--;
+  if (timeUp === 0) stopTimer();
+}
+function stopTimer(){
+  clearInterval(myTimer);
+  enterInit();
+}
+function enterInit(){
+  //Show form initials with submit button, send score
+  questionEl.innerHTML = "All done!";
+  optionsEl.innerHTML = "You final score is: " + score;
+  navigationEl.innerHTML = "Enter Initials: <input type='text' value='' class='input' name='initials' /> <button onclick='addToScoreBoard()'>Submit</button>";
+  correct_wrong.innerHTML = "";
+}
 
 function renderPage() {
   //loop thru Questions
@@ -104,6 +127,9 @@ function renderPage() {
           score = score + 10;
         //Wrong answer do other stuff
         }else{
+          //timeLft = timeLft - 10;
+          $("#time").text("Time Left: " + timeLft.subtract(10, "second").format("m:ss"));
+          timeUp = timeUp - 10;
           document.getElementById(userClicked).style.background = "red";
           document.getElementById(userClicked).style.animation = "wrong 1s infinite";
           correct_wrong.textContent = "You suck!";
@@ -116,15 +142,10 @@ function renderPage() {
       renderPage();
     }, {once : true});
   }else{
-
-    //Show form initials with submit button, send score
-    questionEl.innerHTML = "All done!";
-    optionsEl.innerHTML = "You final score is: " + score;
-    navigationEl.innerHTML = "";
-    correct_wrong.innerHTML = "";
+    enterInit();
   }
 } 
 
 
 // Add event listener to Start Quiz button
-startBtn.addEventListener("click", renderPage);
+startBtn.addEventListener("click", renderPage, time);
