@@ -1,0 +1,124 @@
+
+html,
+body,
+.wrapper {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f9fbfd;
+}
+
+.wrapper {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+  padding-top: 0px;
+  color: hsl(206, 17%, 28%);
+}
+
+.page {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+  border-width: 1px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+  color: hsl(206, 17%, 28%);
+  font-size: 18px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 30px 40px;
+}
+
+.question{
+  margin-top: 0px;
+  padding: 20px 10px;
+  background: #e7e9eb;
+  font-size: 25px;
+  text-align: center;
+}
+
+#options{
+  min-height: 100px;
+  
+}
+
+#options ul{
+  list-style-type: none;
+}
+
+#options li {
+  padding: 4px;
+}
+
+#options li a{
+  color: white;
+  border-color: blue;
+  border-width: 20px;
+  background-color: purple;
+  border-radius: 5px;
+  padding: 3px;
+}
+#options li a:hover{
+  background-color: blue;
+  cursor: grab;
+}
+
+.correct_wrong {
+  text-align: center;
+  padding-top: 15px;
+}
+
+.navigation{
+  text-align: center;
+}
+
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+
+@keyframes right {
+  0% {
+    background-color: lightgreen;
+  }
+  /* ADD MORE KEYFRAMES IF YOU WANT */
+  50% {
+    background-color: green;
+  }
+  100% {
+    background-color: darkgreen;
+  }
+}
+
+@keyframes wrong {
+  0% {
+    background-color: tomato;
+  }
+  /* ADD MORE KEYFRAMES IF YOU WANT */
+  50% {
+    background-color: red;
+  }
+  100% {
+    background-color: darkred;
+  }
+}
+
+/* For later
+@media (max-width: 690px) {
+  
+}
+
+@media (max-width: 500px) {
+  
+}
+*/
