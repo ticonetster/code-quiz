@@ -142,6 +142,7 @@ function renderPage() {
       renderPage();
     }, {once : true});
   }else{
+    stopTimer();
     enterInit();
   }
 } 
