@@ -49,6 +49,7 @@ var optionsEl = document.querySelector("#options");
 var navigationEl = document.querySelector(".navigation");
 var correct_wrong = document.querySelector(".correct_wrong");
 
+
 //show first question
 var currentQIndex = 0;
 
@@ -59,7 +60,7 @@ var timeUp = timeLft.minutes() * 60;
 
 //link to scoreboard
 var gotoScoreboard = document.getElementById("scoreboard");
-gotoScoreboard.onclick = scoreBoard, stopTimer;
+gotoScoreboard.onclick = scoreBoard;
 
 //Timer function
 function time(){
@@ -89,14 +90,17 @@ function enterInit(){
 function addToScoreBoard(){
   var init = document.getElementById("initials").value;
   localStorage.setItem(init, score);
+  $(".navigation").text("");
   scoreBoard();
 }
 
 //FUnction to display scoreboard
 function scoreBoard(){
+  $(".navigation").text("");
   questionEl.innerHTML = "Leadership Board";
   optionsEl.innerHTML = ""
-  navigationEl.innerHTML = ""
+  stopTimer();
+  $("#time").text("");
   for (var i=0; i < localStorage.length; i++){
     var storedName = localStorage.key(i);
     var storedScore = localStorage.getItem(`${storedName}`);
