@@ -8,6 +8,6 @@ If the right answer is selected, the selection will flash green and a message wi
 At the end of the questions a form with your score and a change to enter your initials will appear. </br>
 When your score is submitted a list of all score will appear. You can clear the scoreboard. </br>
 
-![Code-Quiz](./Assets/img/code-quiz.JPG)
+![Code-Quiz](/Assets/img/code-quiz.jpg)
 
 Visit the live page: [Code Quiz](https://ticonetster.github.io/code-quiz/)
