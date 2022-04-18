@@ -24,7 +24,7 @@ const quiz = [
   {
     "Question": "String values must be enclosed within ____ when being assigned to variables.",
     "Answers": ["commas", "curly brackets", "quotes", "parentheses"],
-    "Correct": "all of the above",
+    "Correct": "quotes",
     "Passed": false
   },
   //Question 5
@@ -38,6 +38,7 @@ const quiz = [
 
 //Count the number of Questions
 var numQ = quiz.length;
+
 //Keep score
 var score = 0;
 
@@ -47,13 +48,20 @@ var questionEl = document.querySelector(".question");
 var optionsEl = document.querySelector("#options");
 var navigationEl = document.querySelector(".navigation");
 var correct_wrong = document.querySelector(".correct_wrong");
+
 //show first question
 var currentQIndex = 0;
+
 //Start TImer
 const myTimer = setInterval(time, 1000);
-
 var timeLft = moment("1:00", "m:ss");
 var timeUp = timeLft.minutes() * 60;
+
+//link to scoreboard
+var gotoScoreboard = document.getElementById("scoreboard");
+gotoScoreboard.onclick = scoreBoard, stopTimer;
+
+//Timer function
 function time(){
   console.log("TIme Left: " + timeLft)
   console.log("TIme Up: " + timeUp)
@@ -61,29 +69,53 @@ function time(){
   timeUp--;
   if (timeUp === 0) stopTimer();
 }
+
+//Function stop timer 
 function stopTimer(){
   clearInterval(myTimer);
   enterInit();
 }
+
+//Function to enter initials
 function enterInit(){
   //Show form initials with submit button, send score
   questionEl.innerHTML = "All done!";
   optionsEl.innerHTML = "You final score is: " + score;
-  navigationEl.innerHTML = "Enter Initials: <input type='text' value='' class='input' name='initials' /> <button onclick='addToScoreBoard()'>Submit</button>";
+  navigationEl.innerHTML = "Enter Initials: <input type='text' value='' class='input' id='initials' /> <button onclick='addToScoreBoard()'>Submit</button>";
   correct_wrong.innerHTML = "";
 }
 
+//Function to add score and initials to local storage for record keeping
+function addToScoreBoard(){
+  var init = document.getElementById("initials").value;
+  localStorage.setItem(init, score);
+  scoreBoard();
+}
+
+//FUnction to display scoreboard
+function scoreBoard(){
+  questionEl.innerHTML = "Leadership Board";
+  optionsEl.innerHTML = ""
+  navigationEl.innerHTML = ""
+  for (var i=0; i < localStorage.length; i++){
+    var storedName = localStorage.key(i);
+    var storedScore = localStorage.getItem(`${storedName}`);
+    optionsEl.innerHTML += `Player: ${storedName} --- ${storedScore} <br />`;
+  }
+}
+
+//Function to start the game
 function renderPage() {
   //loop thru Questions
   if(currentQIndex < numQ){
-    //Set question Obj
+    //Set and display the current question
     var currentQ = Object.entries(quiz[currentQIndex]);
     //Clear page for next question
     questionEl.innerHTML = "";
     optionsEl.innerHTML = "";
     navigationEl.innerHTML = "";
     correct_wrong.innerHTML = "";
-    //Show questionObject = currentQ
+    //Show question text from object stored to the screen
     questionEl.textContent = currentQ[0][1];
     //Show answers
     var ulEl = document.createElement('ul');
